@@ -2,6 +2,7 @@ class CLI
   def start 
     puts "NEO Start Menu"
     puts ""
+    puts "------------------------------------------------------------------"
     puts "Near Earth Objects (NEO):"
     puts " Asteroids whose orbit is very close to intersect Earth's orbit."
       Scraper.new.scrape_neos
@@ -16,6 +17,7 @@ class CLI
     puts "1. Get to know some NEOs" 
     puts "2. Credits" 
     puts "3. Exit"
+    puts "------------------------------------------------------------------"
     puts "Please enter a number (1-3): "
   end 
   
@@ -88,6 +90,7 @@ class CLI
     
   def credits 
     puts "" 
+    puts "-----------------Credits-------------------"
     puts "NEO Data provided by:"
     puts "https://theskylive.com/near-earth-objects"
     puts ""
