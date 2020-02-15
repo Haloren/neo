@@ -5,23 +5,23 @@ require "neo/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "neo"
-  spec.version       = Neo::VERSION
+  spec.version       = NeoMod::VERSION
   spec.authors       = ["'Kyle McKenna'"]
   spec.email         = ["'mckennakyler@gmail.com'"]
 
   spec.summary       = %q{Near Earth Objects}
   spec.description   = %q{Learn about NEO objects and current news}
-  spec.homepage      = "http://www.bob.com"
+  spec.homepage      = "https://github.com/Haloren/neo"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "http://mygemserver.com"
+    spec.metadata["allowed_push_host"] = "https://github.com/Haloren/neo"
 
     spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = "http://www.bob.com"
-    spec.metadata["changelog_uri"] = "http://www.bob.com"
+    spec.metadata["source_code_uri"] = "https://github.com/Haloren/neo"
+    spec.metadata["changelog_uri"] = "https://github.com/Haloren/neo"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
