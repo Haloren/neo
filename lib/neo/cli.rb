@@ -90,7 +90,8 @@ class CLI
   end   
   
   def close_pass   
-    puts "stuff here" #list 10 closest neos 
+    puts "NEOs within half the distance to the moon: "
+    
   end  
   
   
@@ -109,12 +110,10 @@ class Scraper
       neo_hash["name"] = row.css('a').text.strip
       neo_hash["date"] = row.css('td')[1].text.strip
       neo_hash["distance"] = row.css('td')[3].text.strip
-      
-      #binding.pry
       Neo.create_from_hash(neo_hash)
     end   
-  end  
-      
+  end 
+  
 end 
     
     
@@ -142,9 +141,10 @@ class Neo
   def info 
     <<~INFO 
     
-    Name: #{name}
-    Date: #{date}
-    Distance: #{distance}
+    Astroid Name:             #{name}
+    
+    Approach Date:        #{date}
+    Nearest Approach :   #{distance} (Lunar Distance)
     
     INFO
   end 
