@@ -1,6 +1,8 @@
 class CLI 
-  def start  
-    puts "Near Earth Objects (NEOs):"
+  def start 
+    puts "NEO Start Menu"
+    puts ""
+    puts "Near Earth Objects (NEO):"
     puts " Asteroids whose orbit is very close to intersect Earth's orbit."
       Scraper.new.scrape_neos
       menu_options
@@ -14,7 +16,7 @@ class CLI
     puts "1. Get to know some NEOs" 
     puts "2. Credits" 
     puts "3. Exit"
-    puts "Please enter a number or type 'Exit': "
+    puts "Please enter a number (1-3): "
   end 
   
   def start_menu
@@ -29,7 +31,11 @@ class CLI
       when "3"
         terminate 
       else 
-        puts "Returning to Main Menu"
+        puts ""
+        puts ""
+        puts "Invaild option. Returning to Main Menu."
+        puts ""
+        puts ""
         menu_options
       end
     end   
@@ -73,6 +79,8 @@ class CLI
     input = gets.strip.upcase 
     if input == "YES"
       neos_list 
+    elsif input == "Y"
+      neos_list 
     else 
       start
     end   
@@ -83,7 +91,7 @@ class CLI
     puts "NEO Data provided by:"
     puts "https://theskylive.com/near-earth-objects"
     puts ""
-    puts "Any key to return to main menu or type 'Exit' to close"
+    puts "Type 'Menu' for main menu or 'Exit' to close"
   end   
   
 end
