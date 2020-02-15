@@ -36,11 +36,11 @@ class CLI
   end   
   
   def terminate
-    puts "" 
-    puts "Type 'Exit' to close"
     puts ""
     puts "Another NEO has passed safely by Earth." 
     puts "See you on the next orbit."
+    puts "" 
+    puts "Type 'Exit' to close"
   end   
   
   def neos_list 
@@ -68,13 +68,13 @@ class CLI
     puts neo.info
     
     puts "Type 'Yes' to see another NEO"
-    puts "or press any key to return to Main Menu."
+    puts "Type 'No' to return to Main Menu."
     
     input = gets.strip.upcase 
     if input == "YES"
       neos_list 
     else 
-      start_menu
+      start
     end   
   end   
     
