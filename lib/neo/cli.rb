@@ -1,8 +1,7 @@
-class CLI #name spacing is module_name::nested_file  (look up what this is)
-
+class CLI 
   def start  
     puts "Near Earth Objects(NEOs):"
-    puts "  a category of Asteroids whose orbit is very close to intersect Earth's orbit."
+    puts " Asteroids whose orbit is very close to intersect Earth's orbit."
       Scraper.new.scrape_neos
       menu_options
       start_menu
@@ -13,7 +12,7 @@ class CLI #name spacing is module_name::nested_file  (look up what this is)
     puts ""
     puts "What would you like to know?"
     puts "1. Get to know some NEOs" 
-    puts "2. Option 2"
+    puts "2. Close passing NEOs"
     puts "3. 99942 Apophis" #make this an option after a user exits and add credits 
     puts "4. Exit"
     puts ""
@@ -22,16 +21,17 @@ class CLI #name spacing is module_name::nested_file  (look up what this is)
   def start_menu
     input = nil 
     while input != "EXIT" 
-      puts "Please enter a number from 1-3 or type 'Exit': " #add a main_menu option
+      puts "Please enter a number or type 'Exit': " 
       input = gets.strip.upcase 
       case input 
       when "1"
         neos_list
       when "2"
-        puts "something will be here"
-        Scraper.new.scrape_option_2
+        close_pass
       when "3"
         apophis 
+      when "4"
+        terminate 
       else 
         puts "Invaild option. Returning to Main Menu"
         menu_options
@@ -40,7 +40,9 @@ class CLI #name spacing is module_name::nested_file  (look up what this is)
   end   
   
   def terminate
-    puts "Another NEO has passed safely by Earth. Goodbye."
+    puts "" 
+    puts "Another NEO has passed safely by Earth." 
+    puts "See you on the next orbit."
   end   
   
   def neos_list 
@@ -65,8 +67,15 @@ class CLI #name spacing is module_name::nested_file  (look up what this is)
 
     puts neo.info
     
-    puts "Would you like to see another NEO?"
-    puts "Yes goes to neo_list, No returns to start_menu"
+    puts "Type 'Yes' to see another NEO"
+    puts "or press any key to return to start."
+    
+    input = gets.strip.upcase 
+    if input == "YES"
+      neos_list 
+    else 
+      start_menu
+    end   
   end   
     
   def apophis 
@@ -80,64 +89,65 @@ class CLI #name spacing is module_name::nested_file  (look up what this is)
     puts "So until 2029, Apophis the Great Serpent, we'll be seeing you."
   end   
   
+  def close_pass   
+    puts "stuff here" #list 10 closest neos 
+  end  
+  
+  
 end
 
 
     
 class Scraper
-      def scrape_neos 
-        doc = Nokogiri::HTML(open("https://theskylive.com/near-earth-objects"))
-        neo_rows = doc.css('tr.data')
+  def scrape_neos 
+    doc = Nokogiri::HTML(open("https://theskylive.com/near-earth-objects"))
+    neo_rows = doc.css('tr.data')
+  
+    neo_rows.each do |row|
+      neo_hash = {}
       
-        neo_rows.each do |row|
-          neo_hash = {}
-          
-          neo_hash["name"] = row.css('a').text.strip
-          neo_hash["date"] = row.css('td')[1].text.strip
-          neo_hash["distance"] = row.css('td')[3].text.strip
-          
-          #binding.pry
-          Neo.create_from_hash(neo_hash)
-        end   
-      end  
+      neo_hash["name"] = row.css('a').text.strip
+      neo_hash["date"] = row.css('td')[1].text.strip
+      neo_hash["distance"] = row.css('td')[3].text.strip
       
-      def scrape_option_2  
-        puts "stuff here"
-      end  
+      #binding.pry
+      Neo.create_from_hash(neo_hash)
+    end   
+  end  
       
 end 
     
+    
+    
 class Neo 
-    
-    @@all = []
-    
-    attr_accessor :name, :date, :distance 
-    
-    def self.create_from_hash(hash)
-      n = Neo.new
-      hash.each do |key, value|
-        n.send("#{key}=", value) if n.methods.include?("#{key}=".to_sym) 
-      end 
-      n.save
-    end   
+  @@all = []
+  attr_accessor :name, :date, :distance 
   
-    def self.all
-      @@all 
-    end   
+  def self.create_from_hash(hash)
+    n = Neo.new
+    hash.each do |key, value|
+      n.send("#{key}=", value) if n.methods.include?("#{key}=".to_sym) 
+    end 
+    n.save
+  end   
+
+  def self.all
+    @@all 
+  end   
+
+  def save
+    tap{@@all << self}#returns self.tap 
+  end 
   
-    def save
-      tap{@@all << self}#returns self.tap 
-    end 
+  def info 
+    <<~INFO 
     
-    def info 
-      <<~INFO 
-      
-      Name: #{name}
-      Date: #{date}
-      Distance: #{distance}
-      
-      INFO
-    end 
+    Name: #{name}
+    Date: #{date}
+    Distance: #{distance}
     
+    INFO
+  end 
+  
 end
   
