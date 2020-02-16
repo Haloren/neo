@@ -10,7 +10,6 @@ class CLI
       start_menu
       terminate  
   end 
-  
   def menu_options
     puts ""
     puts "What would you like to know?"
@@ -20,7 +19,6 @@ class CLI
     puts "------------------------------------------------------------------"
     puts "Please enter a number (1-3): "
   end 
-  
   def start_menu
     input = nil 
     while input != "EXIT" 
@@ -42,7 +40,6 @@ class CLI
       end
     end   
   end   
-  
   def terminate
     puts ""
     puts "Another NEO has passed safely by Earth." 
@@ -50,18 +47,14 @@ class CLI
     puts "" 
     puts "Type 'Exit' to close"
   end   
-  
   def neos_list 
     puts nil
     Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
- 
     puts ""
     puts "To see how close and when the NEO will arrive," #asteroids are listed in closest to furthest
     puts "Enter a number: "
-    
     input = gets.strip.upcase
     index = input.to_i - 1
- 
     if (input.to_i - 1).between?(0, Neo.all.length) 
       neo_info(index) 
     else 
@@ -69,7 +62,6 @@ class CLI
       menu_options
     end 
   end 
-    
   def neo_info(index)
     neo = Neo.all[index]
 
@@ -87,7 +79,6 @@ class CLI
       start
     end   
   end   
-    
   def credits 
     puts "" 
     puts "-----------------Credits-------------------"
@@ -103,24 +94,21 @@ end
 class Scraper
   def scrape_neos 
     doc = Nokogiri::HTML(open("https://theskylive.com/near-earth-objects"))
-    neo_rows = doc.css('tr.data')
-  
+    neo_rows = doc.css('tr.data') #doc.search('tr.data') each do |row|
     neo_rows.each do |row|
       neo_hash = {}
-      
       neo_hash["name"] = row.css('a').text.strip
       neo_hash["date"] = row.css('td')[1].text.strip
       neo_hash["distance"] = row.css('td')[3].text.strip
       Neo.create_from_hash(neo_hash)
+    # binding.pry
     end   
   end 
-  
 end 
 
 class Neo 
   @@all = []
   attr_accessor :name, :date, :distance 
-  
   def self.create_from_hash(hash)
     n = Neo.new
     hash.each do |key, value|
@@ -128,15 +116,12 @@ class Neo
     end 
     n.save
   end   
-
   def self.all
     @@all 
   end   
-
   def save
-    tap{@@all << self}#returns self.tap 
+    tap{@@all << self} #returns self.tap 
   end 
-  
   def info 
     <<~INFO 
     
@@ -147,7 +132,6 @@ class Neo
     
     INFO
   end   
-  
 end
 
   
