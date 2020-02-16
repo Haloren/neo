@@ -15,6 +15,7 @@ class CLI
     puts ""
     puts "What would you like to know?"
     puts "1. Get to know some NEOs" 
+    # puts "#. Closest NEOs"
     puts "2. Credits" 
     puts "3. Exit"
     puts "------------------------------------------------------------------"
@@ -27,6 +28,8 @@ class CLI
       case input 
       when "1"
         neos_list
+      # when "#"  
+      #   closest_neos
       when "2"
         credits  
       when "3"
@@ -64,6 +67,9 @@ class CLI
       menu_options
     end 
   end 
+  # def closest_neos
+  #   Neo.
+  # end 
   def neo_info(index)
     neo = Neo.all[index]
 
