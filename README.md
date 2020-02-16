@@ -1,8 +1,7 @@
 # Neo
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/neo`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem allows the user to see the astroid name, closest approach date, and closest approach lunar distance on Near Earth Objects(NEO). NEOs listed will be less than 2 lunar distances away from Earth.
+Data was provided by: https://theskylive.com/near-earth-objects.
 
 ## Installation
 
@@ -22,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Once installed, open CLI with `./bin/neo`
 
 ## Development
 

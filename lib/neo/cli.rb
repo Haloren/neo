@@ -35,7 +35,7 @@ class CLI
       else 
         puts ""
         puts ""
-        puts "Invaild option. Returning to Main Menu."
+        puts "Returning to Main Menu."
         puts ""
         puts ""
         menu_options
@@ -116,8 +116,7 @@ class Scraper
   end 
   
 end 
-    
-    
+
 class Neo 
   @@all = []
   attr_accessor :name, :date, :distance 
@@ -147,7 +146,8 @@ class Neo
     Nearest Approach :  #{distance} (Lunar Distance)
     
     INFO
-  end 
+  end   
   
 end
+
   
