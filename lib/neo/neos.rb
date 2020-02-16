@@ -16,12 +16,12 @@ class Neo
   end 
   def info 
     <<~INFO 
+    --------------------------------------------------
+     Astroid Name:       #{name}                    
     
-    Astroid Name:       #{name}
-    
-    Approach Date:      #{date}
-    Nearest Approach :  #{distance} (Lunar Distance)
-    
+     Approach Date:      #{date}
+     Nearest Approach :  #{distance} (Lunar Distance)
+    --------------------------------------------------
     INFO
   end   
 end

@@ -3,8 +3,9 @@ class CLI
     puts "NEO Start Menu"
     puts ""
     puts "------------------------------------------------------------------"
-    puts "Near Earth Objects (NEO):"
-    puts " Asteroids whose orbit is very close to intersect Earth's orbit."
+    puts "|Near Earth Objects (NEO):                                       |"
+    puts "| Asteroids whose orbit is very close to intersect Earth's orbit.|"
+    puts "|________________________________________________________________|"
       Scraper.new.scrape_neos
       menu_options
       start_menu
@@ -42,16 +43,17 @@ class CLI
   end   
   def terminate
     puts ""
-    puts "Another NEO has passed safely by Earth." 
-    puts "See you on the next orbit."
-    puts "" 
-    puts "Type 'Exit' to close"
+    puts "-----------------------------------------"
+    puts "|Another NEO has passed safely by Earth.|" 
+    puts "|See you on the next orbit.             |"
+    puts "|---------------------------------------|" 
+    puts "        Type 'Exit' to close"
   end   
   def neos_list 
     puts nil
     Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
     puts ""
-    puts "To see how close and when the NEO will arrive," #asteroids are listed in closest to furthest
+    puts "To see when and how close a NEO will arrive," #listed by date closest to furthest(1 - neo.count)
     puts "Enter a number: "
     input = gets.strip.upcase
     index = input.to_i - 1
@@ -81,10 +83,10 @@ class CLI
   end   
   def credits 
     puts "" 
-    puts "-----------------Credits-------------------"
-    puts "NEO Data provided by:"
-    puts "https://theskylive.com/near-earth-objects"
-    puts ""
+    puts "|-----------------Credits------------------|"
+    puts "|NEO Data provided by:                     |"
+    puts "|https://theskylive.com/near-earth-objects |"
+    puts "|------------------------------------------|"
     puts "Type 'Menu' for main menu or 'Exit' to close"
   end   
   
