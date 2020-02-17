@@ -56,8 +56,9 @@ class CLI
     puts nil
     Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
     puts ""
-    puts "To see when and how close a NEO will arrive," #listed by date closest to furthest(1 - neo.count)
-    puts "Enter a number: "
+    puts "Which NEO would you like to learn about?"
+    puts "(NEOs are list by closest approach date starting at 1)"
+    puts "Please enter a number: "
     input = gets.strip.upcase
     index = input.to_i - 1
     if (input.to_i - 1).between?(0, Neo.all.length) 
