@@ -6,7 +6,7 @@ class CLI
     puts "|Near Earth Objects (NEO):                                       |"
     puts "| Asteroids whose orbit is very close to intersect Earth's orbit.|"
     puts "|________________________________________________________________|"
-      Scraper.new.scrape_neos
+      # Scraper.new.scrape_neos
       menu_options
       start_menu
       terminate  
@@ -15,11 +15,12 @@ class CLI
     puts ""
     puts "What would you like to know?"
     puts "1. Get to know some NEOs" 
-    # puts "#. Closest NEOs"
-    puts "2. Credits" 
-    puts "3. Exit"
+    puts "2. Close NEOs (< 0.5 LD)" #red 
+    # puts "#. Closer than the moon" #green
+    puts "3. Credits" 
+    puts "4. Exit"
     puts "------------------------------------------------------------------"
-    puts "Please enter a number (1-3): "
+    puts "Please enter a number (1-4): "
   end 
   def start_menu
     input = nil 
@@ -28,11 +29,13 @@ class CLI
       case input 
       when "1"
         neos_list
-      # when "#"  
-      #   closest_neos
-      when "2"
-        credits  
+      when "2"  
+        closest_neos
+      #when "#"  
+        moon_close
       when "3"
+        credits  
+      when "4"
         terminate 
       else 
         puts ""
@@ -53,6 +56,7 @@ class CLI
     puts "        Type 'Exit' to close"
   end   
   def neos_list 
+    Scraper.new.scrape_neos
     puts nil
     Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
     puts ""
@@ -68,9 +72,40 @@ class CLI
       menu_options
     end 
   end 
-  # def closest_neos
-  #   Neo.
-  # end 
+  def closest_neos
+    Scraper.new.scrape_close_neos
+    puts nil
+    Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
+    puts ""
+    puts "Which NEO would you like to learn about?"
+    puts "Please enter a number (1 - #{Neo.all.length}): "
+    input = gets.strip.upcase
+    index = input.to_i - 1
+    if (input.to_i - 1).between?(0, Neo.all.length) 
+      neo_info(index) 
+    else 
+      puts "Invaild option. Returning to Main Menu"
+      menu_options
+    end
+  end 
+  
+  # def moon_close
+  #   Scraper.new.scrape_close_neos
+  #   puts nil
+  #   Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
+  #   puts ""
+  #   puts "Which NEO would you like to learn about?"
+  #   puts "Please enter a number (1 - #{Neo.all.length}): "
+  #   input = gets.strip.upcase
+  #   index = input.to_i - 1
+  #   if (input.to_i - 1).between?(0, Neo.all.length) 
+  #     neo_info(index) 
+  #   else 
+  #     puts "Invaild option. Returning to Main Menu"
+  #     menu_options
+  #   end
+  # end   
+  
   def neo_info(index)
     neo = Neo.all[index]
 
