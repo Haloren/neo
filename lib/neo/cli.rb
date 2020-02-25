@@ -6,7 +6,7 @@ class CLI
     puts "|Near Earth Objects (NEO):                                       |"
     puts "| Asteroids whose orbit is very close to intersect Earth's orbit.|"
     puts "|________________________________________________________________|"
-      # Scraper.new.scrape_neos
+      Scraper.new.scrape_neos
       menu_options
       start_menu
       terminate  
@@ -15,8 +15,8 @@ class CLI
     puts ""
     puts "What would you like to know?"
     puts "1. Get to know some NEOs" 
-    puts "2. Close NEOs (< 0.5 LD)" #red 
-    # puts "#. Closer than the moon" #green
+    puts "2. Close NEOs (< 0.5 LD)" 
+    # puts "#. Closer than the moon" 
     puts "3. Credits" 
     puts "4. Exit"
     puts "------------------------------------------------------------------"
@@ -55,55 +55,39 @@ class CLI
     puts "|---------------------------------------|" 
     puts "        Type 'Exit' to close"
   end   
+  
   def neos_list 
-    Scraper.new.scrape_neos
+    #Scraper.new.scrape_neos
     puts nil
     Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
     puts ""
     puts "Which NEO would you like to learn about?"
-    puts "(NEOs are list by closest approach 1 - #{Neo.all.length})"
+    puts "(Listed by closest approach by date from 1 - #{Neo.all.length})"
     puts "Please enter a number: "
     input = gets.strip.upcase
     index = input.to_i - 1
     if (input.to_i - 1).between?(0, Neo.all.length) 
       neo_info(index) 
     else 
-      puts "Invaild option. Returning to Main Menu"
+      puts "Returning to Main Menu"
       menu_options
     end 
   end 
-  def closest_neos
-    Scraper.new.scrape_close_neos
-    puts nil
-    Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
-    puts ""
-    puts "Which NEO would you like to learn about?"
-    puts "Please enter a number (1 - #{Neo.all.length}): "
-    input = gets.strip.upcase
-    index = input.to_i - 1
-    if (input.to_i - 1).between?(0, Neo.all.length) 
-      neo_info(index) 
-    else 
-      puts "Invaild option. Returning to Main Menu"
-      menu_options
-    end
-  end 
+  
+  # def closest_neos
+    # Scraper.new.scrape_close_neos
+    # puts nil
+    # Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
+    # if @distance < 0.5
+    #   neo_info(index)
+    # else  
+    #   puts "Returning to Main Menu"
+    #   menu_options
+    # end
+  # end 
   
   # def moon_close
-  #   Scraper.new.scrape_close_neos
-  #   puts nil
-  #   Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
-  #   puts ""
-  #   puts "Which NEO would you like to learn about?"
-  #   puts "Please enter a number (1 - #{Neo.all.length}): "
-  #   input = gets.strip.upcase
-  #   index = input.to_i - 1
-  #   if (input.to_i - 1).between?(0, Neo.all.length) 
-  #     neo_info(index) 
-  #   else 
-  #     puts "Invaild option. Returning to Main Menu"
-  #     menu_options
-  #   end
+  
   # end   
   
   def neo_info(index)
