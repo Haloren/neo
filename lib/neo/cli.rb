@@ -57,7 +57,7 @@ class CLI
     Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
     puts ""
     puts "Which NEO would you like to learn about?"
-    puts "(NEOs are list by closest approach date starting at 1)"
+    puts "(NEOs are list by closest approach 1 - #{Neo.all.length})"
     puts "Please enter a number: "
     input = gets.strip.upcase
     index = input.to_i - 1
