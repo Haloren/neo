@@ -67,6 +67,7 @@ class CLI
     puts "Which NEO would you like to learn about?"
     puts "(Listed by closest approach by date from 1 - #{Neo.all.length})"
     puts "Please enter a number: "
+    
     input = gets.strip.upcase
     index = input.to_i - 1
     if (input.to_i - 1).between?(0, Neo.all.length) 
@@ -80,7 +81,6 @@ class CLI
   
   def neo_info(neo)
     # neo = Neo.all[index]
-
     puts neo.info
     
     puts "Type 'Yes' to see another NEO"
@@ -97,7 +97,6 @@ class CLI
   end   
   
   def closest_neos
-    
     puts nil
     Neo.closest_ones.each.with_index(1) {|n, index| puts "#{index}. #{n.name}" }
     puts ""
@@ -113,7 +112,6 @@ class CLI
       puts "Returning to Main Menu"
       menu_options
     end
-
   end 
   
   def credits 
