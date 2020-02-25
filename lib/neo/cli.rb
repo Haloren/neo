@@ -70,15 +70,16 @@ class CLI
     input = gets.strip.upcase
     index = input.to_i - 1
     if (input.to_i - 1).between?(0, Neo.all.length) 
-      neo_info(index) 
+      neo = Neo.all[index] 
+      neo_info(neo) 
     else 
       puts "Returning to Main Menu"
       menu_options
     end 
   end 
   
-  def neo_info(index)
-    neo = Neo.all[index]
+  def neo_info(neo)
+    # neo = Neo.all[index]
 
     puts neo.info
     
@@ -91,14 +92,28 @@ class CLI
     elsif input == "Y"
       neos_list 
     else 
-      start
+      menu_options
     end   
   end   
   
   def closest_neos
+    
+    puts nil
+    Neo.closest_ones.each.with_index(1) {|n, index| puts "#{index}. #{n.name}" }
     puts ""
-    puts "2011 ES4 / 2020-Sep-01 16:12 / 0.31550 LD "
-    puts ""
+    puts "Which NEO(s) within .5 LD would you like to learn about?"
+    puts "Please enter a number (1 - #{Neo.closest_ones.length}): "
+    input = gets.strip.upcase
+    index = input.to_i - 1
+   
+    if (input.to_i - 1).between?(0, Neo.all.length)
+      neo = Neo.closest_ones[index]
+      neo_info(neo)
+    else
+      puts "Returning to Main Menu"
+      menu_options
+    end
+
   end 
   
   def credits 

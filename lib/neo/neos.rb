@@ -30,4 +30,12 @@ class Neo
     INFO
   end   
   
+  def self.closest_ones
+    arr = []
+    @@all.each do |n|
+      arr << n if n.distance.to_f < 0.5
+    end
+    return arr
+  end
+  
 end
