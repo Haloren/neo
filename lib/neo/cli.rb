@@ -1,5 +1,6 @@
 class CLI 
   def start 
+    system "clear"
     puts "NEO Start Menu"
     puts ""
     puts "__________________________________________________________________"
@@ -11,17 +12,17 @@ class CLI
       start_menu
       terminate  
   end 
+  
   def menu_options
-    puts ""
     puts "What would you like to know?"
     puts "1. Get to know some NEOs" 
     puts "2. Close NEOs (< 0.5 LD)" 
-    # puts "#. Closer than the moon" 
     puts "3. Credits" 
     puts "4. Exit"
     puts "------------------------------------------------------------------"
     puts "Please enter a number (1-4): "
   end 
+  
   def start_menu
     input = nil 
     while input != "EXIT" 
@@ -31,8 +32,6 @@ class CLI
         neos_list
       when "2"  
         closest_neos
-      #when "#"  
-        #moon_close
       when "3"
         credits  
       when "4"
@@ -47,12 +46,16 @@ class CLI
       end
     end   
   end   
+  
   def terminate
+    system "clear"
     puts ""
     puts "-----------------------------------------"
     puts "|Another NEO has passed safely by Earth.|" 
     puts "|See you on the next orbit.             |"
     puts "|---------------------------------------|" 
+    puts ""
+    puts "exit"
     exit 
   end   
   
@@ -93,22 +96,19 @@ class CLI
   end   
   
   def closest_neos
-    #system "clear" 
     puts ""
     puts "2011 ES4 / 2020-Sep-01 16:12 / 0.31550 LD "
     puts ""
   end 
   
-  # def moon_close
-    #duplicate closest_neos method with distance < 1 
-  # end   
-  
   def credits 
+    system "clear"
     puts "" 
     puts "|-----------------Credits------------------|"
     puts "|    NEO Data provided by THE SKY LIVE     |"
     puts "|https://theskylive.com/near-earth-objects |"
     puts "|------------------------------------------|"
+    puts ""
     puts "Type 'Menu' for main menu or 'Exit' to close"
   end   
   
