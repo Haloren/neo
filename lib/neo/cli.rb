@@ -74,17 +74,6 @@ class CLI
     end 
   end 
   
-  def closest_neos
-    #system "clear" 
-    puts ""
-    puts "2011 ES4 / 2020-Sep-01 16:12 / 0.31550 LD "
-    puts ""
-  end 
-  
-  # def moon_close
-    #duplicate closest_neos method with distance < 1 
-  # end   
-  
   def neo_info(index)
     neo = Neo.all[index]
 
@@ -102,10 +91,22 @@ class CLI
       start
     end   
   end   
+  
+  def closest_neos
+    #system "clear" 
+    puts ""
+    puts "2011 ES4 / 2020-Sep-01 16:12 / 0.31550 LD "
+    puts ""
+  end 
+  
+  # def moon_close
+    #duplicate closest_neos method with distance < 1 
+  # end   
+  
   def credits 
     puts "" 
     puts "|-----------------Credits------------------|"
-    puts "|NEO Data provided by:                     |"
+    puts "|    NEO Data provided by THE SKY LIVE     |"
     puts "|https://theskylive.com/near-earth-objects |"
     puts "|------------------------------------------|"
     puts "Type 'Menu' for main menu or 'Exit' to close"
