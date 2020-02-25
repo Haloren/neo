@@ -2,7 +2,7 @@ class CLI
   def start 
     puts "NEO Start Menu"
     puts ""
-    puts "------------------------------------------------------------------"
+    puts "__________________________________________________________________"
     puts "|Near Earth Objects (NEO):                                       |"
     puts "| Asteroids whose orbit is very close to intersect Earth's orbit.|"
     puts "|________________________________________________________________|"
@@ -32,7 +32,7 @@ class CLI
       when "2"  
         closest_neos
       #when "#"  
-        moon_close
+        #moon_close
       when "3"
         credits  
       when "4"
@@ -53,7 +53,7 @@ class CLI
     puts "|Another NEO has passed safely by Earth.|" 
     puts "|See you on the next orbit.             |"
     puts "|---------------------------------------|" 
-    puts "        Type 'Exit' to close"
+    exit 
   end   
   
   def neos_list 
@@ -74,20 +74,15 @@ class CLI
     end 
   end 
   
-  # def closest_neos
-    # Scraper.new.scrape_close_neos
-    # puts nil
-    # Neo.all.each.with_index(1){|n, index| puts "#{index}. #{n.name}" }
-    # if @distance < 0.5
-    #   neo_info(index)
-    # else  
-    #   puts "Returning to Main Menu"
-    #   menu_options
-    # end
-  # end 
+  def closest_neos
+    #system "clear" 
+    puts ""
+    puts "2011 ES4 / 2020-Sep-01 16:12 / 0.31550 LD "
+    puts ""
+  end 
   
   # def moon_close
-  
+    #duplicate closest_neos method with distance < 1 
   # end   
   
   def neo_info(index)
